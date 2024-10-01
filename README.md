@@ -1,2 +1,2 @@
-# C-Solved-Questions
+# C++ -Solved-Questions
 Data structure and algorithm
