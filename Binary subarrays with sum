@@ -1,0 +1,25 @@
+Given a binary array nums and an integer goal, return the number of non-empty subarrays with a sum goal.
+
+A subarray is a contiguous part of the array.
+
+class Solution {
+public:
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+        int n=nums.size();
+        int ans=0;
+        
+        for(int i=0;i<n;i++){
+            int cnt=nums[i];
+            if(cnt==goal){
+                ans++;
+            }
+            for(int j=i+1;j<n;j++){
+                 cnt+=nums[j];
+                 if(cnt==goal){
+                   ans++;
+                 }
+            }
+        }
+        return ans;
+    }
+};
