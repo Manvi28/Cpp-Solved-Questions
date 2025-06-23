@@ -1,0 +1,67 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+class node{
+    public:
+    int data;
+    node* left;
+    node* right;
+    node(int d){
+        this->data=d;
+        this->left=NULL;
+        this->right=NULL;
+    }
+};
+node* insertinbst(node* &root,int data){
+    if(root==NULL){
+        root=new node(data);
+        return root;
+    }
+    if(root->data > data){
+        root->left=insertinbst(root->left,data);
+    }else{
+        root->right=insertinbst(root->right,data);
+    }
+    return root;
+}
+void takeinput(node* &root){
+    int data;
+    cin>>data;
+    while(data!=-1){
+        root=insertinbst(root,data);
+        cin>>data;
+        
+    }
+}
+node* minvalue(node* root){
+    node* temp=root;
+    while(temp->left!=NULL){
+        temp=temp->left;
+    }
+    return temp;
+}
+node* maxvalue(node* root){
+    node* temp=root;
+    while(temp->right!=NULL){
+        temp=temp->right;
+    }
+    return temp;
+}
+void inorder(node* &root){
+    if(root==NULL){
+        return;
+    }
+    inorder(root->left);
+    cout<<root->data<<endl;
+    inorder(root->right);
+}
+int main() {
+   node* root=NULL;
+   cout<<"enter data for bst"<<endl;
+   takeinput(root);
+   cout<<"printing"<<endl;
+   inorder(root);
+   cout<<"min value is "<<minvalue(root)->data<<endl;
+   cout<<"max value is "<<maxvalue(root)->data<<endl;
+    return 0;
+}
