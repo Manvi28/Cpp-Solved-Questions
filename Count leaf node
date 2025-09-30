@@ -3,7 +3,7 @@ You are given a Binary tree. You have to count and return the number of leaf nod
 
 A binary tree is a tree data structure in which each node has at most two children, which are referred to as the left child and the right child
 
-A node is a leaf node if both left and right child nodes of it are NULL.
+A node is a leaf node if both left and right child nodes of it are NULL
 
 void preorder(BinaryTreeNode<int> *root,int &cnt){
     if(root==NULL){
