@@ -1,0 +1,49 @@
+Write a program to solve a Sudoku puzzle by filling the empty cells.
+
+A sudoku solution must satisfy all of the following rules:
+
+Each of the digits 1-9 must occur exactly once in each row.
+Each of the digits 1-9 must occur exactly once in each column.
+Each of the digits 1-9 must occur exactly once in each of the 9 3x3 sub-boxes of the grid.
+The '.' character indicates empty cells.
+
+class Solution {
+private:
+    bool issafe(int row, int col, char val, vector<vector<char>>& board, int n) {
+        for (int i = 0; i < n; i++) {
+            // Check row
+            if (board[row][i] == val) return false;
+            // Check column
+            if (board[i][col] == val) return false;
+            // Check 3x3 sub-box
+            int subRow = 3 * (row / 3) + i / 3;
+            int subCol = 3 * (col / 3) + i % 3;
+            if (board[subRow][subCol] == val) return false;
+        }
+        return true;
+    }
+
+    bool solve(vector<vector<char>>& board) {
+        int n = board.size();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (board[i][j] == '.') {
+                    for (char c = '1'; c <= '9'; c++) {
+                        if (issafe(i, j, c, board, n)) {
+                            board[i][j] = c;
+                            if (solve(board)) return true;
+                            board[i][j] = '.';
+                        }
+                    }
+                    return false; // no valid digit fits here → backtrack
+                }
+            }
+        }
+        return true; // all filled correctly
+    }
+
+public:
+    void solveSudoku(vector<vector<char>>& board) {
+        solve(board);
+    }
+};
