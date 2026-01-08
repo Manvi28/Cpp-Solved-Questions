@@ -1,5 +1,4 @@
 #include <bits/stdc++.h> 
-
 bool isSafe(int x,int y, int n,vector<vector<bool>>&vis, vector < vector < int >> &arr ){
     if((x>=0&&x<n)&&(y>=0&&y<n)&&vis[x][y]!=1&&arr[x][y]==1){
         return true;
